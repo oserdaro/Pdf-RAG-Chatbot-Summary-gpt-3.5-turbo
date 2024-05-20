@@ -16,7 +16,6 @@ logout_btn = st.sidebar.empty()
 def addapi():
     openai_api_key = sidebar_api_msg.text_input("openai api key", key="OPENAI_API_KEY", type="password")
     os.environ['OPENAI_API_KEY'] = openai_api_key
-    load_pdf()
 
 def logout():
     del os.environ['OPENAI_API_KEY']
@@ -70,4 +69,5 @@ else:
         logout_btn.empty()
         addapi()
 
+load_pdf()
 
