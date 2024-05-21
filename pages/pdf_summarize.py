@@ -7,7 +7,7 @@ from langchain.chains.summarize import load_summarize_chain
 from langchain_core.prompts import PromptTemplate
 import textwrap
 import pathlib
-from data import get_pdf
+import data
 import warnings;
 warnings.filterwarnings('ignore')
 
@@ -23,7 +23,7 @@ if not os.environ['OPENAI_API_KEY']:
     st.write("Please add your OpenAI API key to continue.")
     st.stop()
 
-elif not get_pdf():
+elif not data.pdf:
     st.write("No pdf file was loaded!")
     st.stop()
 
@@ -34,7 +34,7 @@ def pdf_card():
     file = pathlib.Path(os.environ["FILE"])
     ext = file.suffix
     st.write("File type:", ext)
-    pgs = len(get_pdf())
+    pgs = len(data.pdf)
     st.write("Pages:", pgs)
 
 
@@ -84,7 +84,7 @@ st.write("----")
 file = pathlib.Path(os.environ["FILE"])
 ext = file.suffix
 st.write("File type:", ext)
-pgs = len(get_pdf())
+pgs = len(data.pdf)
 st.write("Pages:", pgs)
 st.write("----")
 
@@ -100,11 +100,11 @@ btn = st.button("Get summary")
 if btn:
     if type == "Summary of Certain Pages":
         st.subheader("Response : ")
-        st.text(page_summary(get_pdf(), selfrom, selto))
+        st.text(page_summary(data.pdf, selfrom, selto))
     elif type == "Short Summary of the Entire Document":
         st.subheader("Response : ")
-        st.text(short_summary(get_pdf()))
+        st.text(short_summary(data.pdf))
     else: 
         type == "Detailed Summary of the Entire Document"
         st.subheader("Response : ")
-        st.text(detailed_summary(get_pdf()))
+        st.text(detailed_summary(data.pdf))
