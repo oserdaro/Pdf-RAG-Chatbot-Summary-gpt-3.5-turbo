@@ -7,7 +7,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_openai import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 import textwrap
-from data import get_pdf
+import data
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -23,7 +23,7 @@ if not os.environ.get('OPENAI_API_KEY'):
     st.write("Please add your OpenAI API key to continue.")
     st.stop()
 
-elif not get_pdf():
+elif not data.pdf:
     st.write("No pdf file was loaded!")
     st.stop()
 
@@ -72,7 +72,7 @@ if btn:
         st.write("No user query was entered!")
         exit()
 
-    init_model(get_pdf())
+    init_model(data.pdf)
 
     result = get_answer(user_query)
     st.subheader("Response : ")
