@@ -1,8 +1,0 @@
-langchain
-faiss-cpu
-langchain-openai
-pypdfium2
-streamlit
-langchain-community
-
-
