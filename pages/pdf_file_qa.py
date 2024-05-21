@@ -44,13 +44,7 @@ def init_model(pdf):
     # vectorstores
     index = FAISS.from_documents(documents=pdf,
                                 embedding=embeddings,
-                                # persist_directory="/content/vectorstore"
                                 )
-
-    # loaded_index = FAISS(
-    #                     # persist_directory="/content/vectorstore",
-    #                     embedding_function=embeddings
-    #                     )
 
     llm = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0)
     chain = load_qa_chain(llm, chain_type="stuff")
