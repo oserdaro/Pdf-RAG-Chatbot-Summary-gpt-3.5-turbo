@@ -2,7 +2,7 @@ import streamlit as st
 import os
 import tempfile
 from langchain_community.document_loaders import PyPDFium2Loader
-from data import set_pdf
+import data
 
 # page title
 st.title(":orange[Pdf Q&A and Summary RAG Chatbot with gpt-3.5-turbo]")
@@ -46,7 +46,7 @@ def load_pdf():
                     pdf = file_loader.load()
 
                     if pdf:
-                        set_pdf(pdf)
+                        data.pdf = pdf
                         st.success('Success!')
                         os.environ['FILE'] = tmp_file_path
             
